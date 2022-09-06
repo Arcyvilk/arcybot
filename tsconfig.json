@@ -12,5 +12,7 @@
     "lib": ["esnext"],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./lib",
+    "outDir": "dist"
   },
 }
