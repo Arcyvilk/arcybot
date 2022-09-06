@@ -1,7 +1,8 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import * as dotenv from 'dotenv';
 
-import { log, updateCommands } from 'utils';
+import { executeCommand, updateCommands } from 'utils/commands';
+import { log } from 'utils';
 
 dotenv.config();
 
@@ -14,16 +15,8 @@ bot.once('ready', () => {
 });
 
 bot.on('interactionCreate', async interaction => {
-	if (!interaction.isChatInputCommand()) return;
-
-	const { commandName } = interaction;
-
-	if (commandName === 'ping') {
-		await interaction.reply('Pong!');
-	} else if (commandName === 'server') {
-		await interaction.reply('Server info.');
-	} else if (commandName === 'user') {
-		await interaction.reply('User info.');
+	if (interaction.isChatInputCommand()) {
+		executeCommand(interaction);
 	}
 });
 
