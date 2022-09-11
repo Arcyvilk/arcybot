@@ -1,5 +1,11 @@
 # ARCYBOT - a set of utils for Discord bots!
 
+## Development
+
+Local development: `yarn dev`
+Production environment: `yarn build && yarn start`
+
+## Discord permissions
 Permissions integer: `311385508928`
 
 This allows the bot to:
