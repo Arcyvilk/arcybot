@@ -3,12 +3,12 @@ import { CommandType } from 'utils/constants';
 
 // TODO
 // move this command object to database
-export const commands: ICommand[] = [
+export const mock: ICommand[] = [
 	{
 		keyword: 'text',
 		isDisabled: false,
 		isModOnly: false,
-		canUseInDm: false,
+		canUseInDm: true,
 		description: 'Demonstrates use of a TEXT command.',
 		type: CommandType.TEXT,
 		text: 'I am a text command!',
@@ -35,8 +35,8 @@ export const commands: ICommand[] = [
 		},
 	},
 	{
-		keyword: 'function',
-		isDisabled: true,
+		keyword: 'help',
+		isDisabled: false,
 		isModOnly: false,
 		canUseInDm: true,
 		description: 'Demonstrates use of a FUNCTION command.',

@@ -9,9 +9,7 @@ import {
 } from './types';
 
 abstract class CommandBuilder<T extends ICommand> {
-	public command: T;
-
-	constructor(command: T) {
+	constructor(public command: T) {
 		this.command = command;
 	}
 
@@ -28,14 +26,10 @@ abstract class CommandBuilder<T extends ICommand> {
 		}
 		return true;
 	}
-
-	public execute() {
-		/** */
-	}
 }
 
 export class CommandText extends CommandBuilder<ICommandText> {
-	public reply(interaction: IInteraction): void {
+	public execute(interaction: IInteraction): void {
 		const canBeExecuted = this.canBeExecuted(interaction);
 		if (!canBeExecuted) return;
 
@@ -44,7 +38,7 @@ export class CommandText extends CommandBuilder<ICommandText> {
 }
 
 export class CommandEmbed extends CommandBuilder<ICommandEmbed> {
-	public reply(interaction: IInteraction): void {
+	public execute(interaction: IInteraction): void {
 		const canBeExecuted = this.canBeExecuted(interaction);
 		if (!canBeExecuted) return;
 
@@ -59,10 +53,18 @@ export class CommandEmbed extends CommandBuilder<ICommandEmbed> {
 }
 
 export class CommandFunction extends CommandBuilder<ICommandFunction> {
-	public reply(interaction: IInteraction): void {
+	constructor(
+		command: ICommandFunction,
+		private commandFn: (interaction: IInteraction) => unknown,
+	) {
+		super(command);
+		this.commandFn = commandFn;
+	}
+
+	public execute(interaction: IInteraction): void {
 		const canBeExecuted = this.canBeExecuted(interaction);
 		if (!canBeExecuted) return;
 
-		interaction.reply('This command type is not supported yet');
+		this.commandFn(interaction);
 	}
 }

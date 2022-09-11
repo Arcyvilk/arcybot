@@ -8,17 +8,27 @@ import { CommandText, CommandEmbed, CommandFunction } from 'CommandBuilder';
 
 import { log } from 'utils';
 
+export type CommandConfig = {
+	discordToken?: string;
+	botId?: string;
+};
+
 export class CommandList {
-	private rawCommands: ICommand[];
 	public list: (CommandText | CommandEmbed | CommandFunction | undefined)[];
 
-	constructor(commands: ICommand[]) {
-		this.rawCommands = commands;
-		this.list = this.getList(commands);
+	constructor(
+		private rawCommands: ICommand[],
+		private fnCommands: Record<string, (interaction: IInteraction) => unknown>,
+		private config: CommandConfig,
+	) {
+		this.rawCommands = rawCommands;
+		this.fnCommands = fnCommands;
+		this.config = config;
+		this.list = this.getList();
 	}
 
-	private getList(commands: ICommand[]) {
-		return commands.map(command => {
+	private getList() {
+		return this.rawCommands.map(command => {
 			if (command.type === CommandType.TEXT) {
 				return new CommandText(command);
 			}
@@ -26,7 +36,8 @@ export class CommandList {
 				return new CommandEmbed(command);
 			}
 			if (command.type === CommandType.FUNCTION) {
-				return new CommandFunction(command);
+				const fn = this.fnCommands[command.keyword];
+				return new CommandFunction(command, fn);
 			}
 		});
 	}
@@ -46,8 +57,8 @@ export class CommandList {
 	}
 
 	public async register() {
-		const token = process.env.DISCORD_TOKEN;
-		const botId = process.env.BOT_ID;
+		const token = this.config.discordToken;
+		const botId = this.config.botId;
 
 		if (!token || !botId) return;
 
@@ -59,9 +70,11 @@ export class CommandList {
 			const discordCommands = (await rest.put(route, {
 				body: slashCommands,
 			})) as IDiscordCommand[];
-			log.INFO(`Successfully registered ${discordCommands.length} commands!`);
+			log.INFO(
+				`Successfully registered ${discordCommands.length} global commands!`,
+			);
 		} catch (error) {
-			log.WARN(`Could not register commands.`);
+			log.WARN(`Could not register global commands.`);
 			console.log(error);
 		}
 	}
@@ -71,6 +84,6 @@ export class CommandList {
 		const Command = this.list.find(c => c?.command.keyword === commandName);
 
 		if (!Command) return;
-		Command.reply(interaction);
+		Command.execute(interaction);
 	}
 }

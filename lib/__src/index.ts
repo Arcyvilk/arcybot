@@ -3,13 +3,18 @@ import * as dotenv from 'dotenv';
 
 import { log } from 'utils';
 
-import { commands } from '__src/commands';
+import { mock as rawCommands } from '__src/commands/mock';
+import { commands as fnCommands } from '__src/commands/commands';
 import { CommandList } from 'CommandList';
 
 dotenv.config();
 
 const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
-const Commands = new CommandList(commands);
+
+const Commands = new CommandList(rawCommands, fnCommands, {
+	discordToken: process.env.DISCORD_TOKEN,
+	botId: process.env.BOT_ID,
+});
 
 bot.once('ready', () => {
 	log.INFO('Ready!');
