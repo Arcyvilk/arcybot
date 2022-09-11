@@ -4,7 +4,7 @@ import { ICommand, IInteraction } from './types';
 
 import { CommandType } from 'utils/constants';
 import { IDiscordCommand } from 'types';
-import { CommandText, CommandEmbed, CommandFunction } from 'CommandBuilder';
+import { TextCommand, EmbedCommand, FunctionCommand } from 'CommandBuilder';
 
 import { log } from 'utils';
 
@@ -13,12 +13,14 @@ export type CommandConfig = {
 	botId?: string;
 };
 
+export type CommandFn = (interaction: IInteraction) => unknown;
+
 export class CommandList {
-	public list: (CommandText | CommandEmbed | CommandFunction | undefined)[];
+	public list: (TextCommand | EmbedCommand | FunctionCommand | undefined)[];
 
 	constructor(
 		private rawCommands: ICommand[],
-		private fnCommands: Record<string, (interaction: IInteraction) => unknown>,
+		private fnCommands: Record<string, CommandFn>,
 		private config: CommandConfig,
 	) {
 		this.rawCommands = rawCommands;
@@ -30,14 +32,14 @@ export class CommandList {
 	private getList() {
 		return this.rawCommands.map(command => {
 			if (command.type === CommandType.TEXT) {
-				return new CommandText(command);
+				return new TextCommand(command);
 			}
 			if (command.type === CommandType.EMBED) {
-				return new CommandEmbed(command);
+				return new EmbedCommand(command);
 			}
 			if (command.type === CommandType.FUNCTION) {
 				const fn = this.fnCommands[command.keyword];
-				return new CommandFunction(command, fn);
+				return new FunctionCommand(command, fn);
 			}
 		});
 	}

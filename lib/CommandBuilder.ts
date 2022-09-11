@@ -1,3 +1,4 @@
+import { CommandFn } from 'CommandList';
 import { EmbedBuilder } from 'discord.js';
 import { CommandDisabled } from 'utils/constants';
 import {
@@ -28,7 +29,7 @@ abstract class CommandBuilder<T extends ICommand> {
 	}
 }
 
-export class CommandText extends CommandBuilder<ICommandText> {
+export class TextCommand extends CommandBuilder<ICommandText> {
 	public execute(interaction: IInteraction): void {
 		const canBeExecuted = this.canBeExecuted(interaction);
 		if (!canBeExecuted) return;
@@ -37,7 +38,7 @@ export class CommandText extends CommandBuilder<ICommandText> {
 	}
 }
 
-export class CommandEmbed extends CommandBuilder<ICommandEmbed> {
+export class EmbedCommand extends CommandBuilder<ICommandEmbed> {
 	public execute(interaction: IInteraction): void {
 		const canBeExecuted = this.canBeExecuted(interaction);
 		if (!canBeExecuted) return;
@@ -52,11 +53,8 @@ export class CommandEmbed extends CommandBuilder<ICommandEmbed> {
 	}
 }
 
-export class CommandFunction extends CommandBuilder<ICommandFunction> {
-	constructor(
-		command: ICommandFunction,
-		private commandFn: (interaction: IInteraction) => unknown,
-	) {
+export class FunctionCommand extends CommandBuilder<ICommandFunction> {
+	constructor(command: ICommandFunction, private commandFn: CommandFn) {
 		super(command);
 		this.commandFn = commandFn;
 	}
