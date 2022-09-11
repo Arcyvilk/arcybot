@@ -12,3 +12,8 @@ export enum Color {
 	DELETE = 'C70000',
 	DESCRIPTION = '8442F5',
 }
+
+export enum CommandDisabled {
+	MOD_ONLY = 'This command can be used only by people with specified role.',
+	DISABLED = 'This command is temporarily disabled.',
+}

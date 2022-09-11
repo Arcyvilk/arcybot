@@ -1,22 +1,24 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import * as dotenv from 'dotenv';
 
-import { executeCommand, updateCommands } from 'utils/commands';
 import { log } from 'utils';
+
+import { commands } from '__src/commands';
+import { CommandList } from 'CommandList';
 
 dotenv.config();
 
 const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
-const guildId = '234740225782317057'; // ArcyTesting - mock guild id
+const Commands = new CommandList(commands);
 
 bot.once('ready', () => {
 	log.INFO('Ready!');
-	updateCommands(guildId);
+	Commands.register();
 });
 
 bot.on('interactionCreate', async interaction => {
 	if (interaction.isChatInputCommand()) {
-		executeCommand(interaction);
+		Commands.execute(interaction);
 	}
 });
 

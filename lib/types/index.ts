@@ -1,3 +1,3 @@
-export * from './Command';
-export * from './DiscordCommand';
-export * from './Embed';
+export * from './ICommand';
+export * from './IDiscordCommand';
+export * from './IEmbed';

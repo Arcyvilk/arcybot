@@ -1,13 +1,14 @@
-import { Command } from 'types/Command';
+import { ICommand } from 'types';
 import { CommandType } from 'utils/constants';
 
 // TODO
 // move this command object to database
-export const commands: Command[] = [
+export const commands: ICommand[] = [
 	{
 		keyword: 'text',
 		isDisabled: false,
 		isModOnly: false,
+		canUseInDm: false,
 		description: 'Demonstrates use of a TEXT command.',
 		type: CommandType.TEXT,
 		text: 'I am a text command!',
@@ -16,6 +17,7 @@ export const commands: Command[] = [
 		keyword: 'embed',
 		isDisabled: false,
 		isModOnly: false,
+		canUseInDm: true,
 		description: 'Demonstrates use of an EMBED command.',
 		type: CommandType.EMBED,
 		embed: {
@@ -34,8 +36,9 @@ export const commands: Command[] = [
 	},
 	{
 		keyword: 'function',
-		isDisabled: false,
+		isDisabled: true,
 		isModOnly: false,
+		canUseInDm: true,
 		description: 'Demonstrates use of a FUNCTION command.',
 		type: CommandType.FUNCTION,
 	},

@@ -1,4 +1,6 @@
-export type DiscordCommand = {
+import { CacheType, ChatInputCommandInteraction } from 'discord.js';
+
+export type IDiscordCommand = {
 	id: string;
 	application_id: string;
 	version: string;
@@ -11,3 +13,5 @@ export type DiscordCommand = {
 	description_localizations: null; // TODO
 	guild_id: string;
 };
+
+export type IInteraction = ChatInputCommandInteraction<CacheType>;
