@@ -1,11 +1,11 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import * as dotenv from 'dotenv';
 
+import { CommandList } from 'CommandList';
 import { log } from 'utils';
 
 import { mock as rawCommands } from '__src/commands/mock';
 import { commands as fnCommands } from '__src/commands/commands';
-import { CommandList } from 'CommandList';
 
 dotenv.config();
 

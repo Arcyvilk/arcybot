@@ -62,6 +62,10 @@ export class CommandFunction extends CommandBuilder<ICommandFunction> {
 	}
 
 	public execute(interaction: IInteraction): void {
+		if (!this.commandFn) {
+			interaction.reply('This command is registered, but not configured.');
+			return;
+		}
 		const canBeExecuted = this.canBeExecuted(interaction);
 		if (!canBeExecuted) return;
 

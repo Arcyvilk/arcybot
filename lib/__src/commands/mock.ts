@@ -42,4 +42,12 @@ export const mock: ICommand[] = [
 		description: 'Demonstrates use of a FUNCTION command.',
 		type: CommandType.FUNCTION,
 	},
+	{
+		keyword: 'dupa',
+		isDisabled: false,
+		isModOnly: false,
+		canUseInDm: true,
+		description: 'Demonstrates use of a FUNCTION command.',
+		type: CommandType.FUNCTION,
+	},
 ];
