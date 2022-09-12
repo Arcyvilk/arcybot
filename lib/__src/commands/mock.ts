@@ -43,7 +43,7 @@ export const mock: ICommand[] = [
 		type: CommandType.FUNCTION,
 	},
 	{
-		keyword: 'dupa',
+		keyword: 'mod',
 		isDisabled: false,
 		isModOnly: false,
 		canUseInDm: true,

@@ -1,9 +1,8 @@
 import { Routes, SlashCommandBuilder } from 'discord.js';
 import { REST } from '@discordjs/rest';
-import { ICommand, IInteraction } from './types';
 
 import { CommandType } from 'utils/constants';
-import { IDiscordCommand } from 'types';
+import { ICommand, IInteraction, IDiscordCommand } from 'types';
 import { TextCommand, EmbedCommand, FunctionCommand } from 'CommandBuilder';
 
 import { log } from 'utils';
@@ -15,12 +14,14 @@ export type CommandConfig = {
 
 export type CommandFn = (interaction: IInteraction) => unknown;
 
+export type CommandDictionary = Map<string, CommandFn>;
+
 export class CommandList {
 	public list: (TextCommand | EmbedCommand | FunctionCommand | undefined)[];
 
 	constructor(
 		private rawCommands: ICommand[],
-		private fnCommands: Record<string, CommandFn>,
+		private fnCommands: CommandDictionary,
 		private config: CommandConfig,
 	) {
 		this.rawCommands = rawCommands;
@@ -38,7 +39,7 @@ export class CommandList {
 				return new EmbedCommand(command);
 			}
 			if (command.type === CommandType.FUNCTION) {
-				const fn = this.fnCommands[command.keyword];
+				const fn = this.fnCommands.get(command.keyword);
 				return new FunctionCommand(command, fn);
 			}
 		});

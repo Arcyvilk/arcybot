@@ -54,7 +54,10 @@ export class EmbedCommand extends CommandBuilder<ICommandEmbed> {
 }
 
 export class FunctionCommand extends CommandBuilder<ICommandFunction> {
-	constructor(command: ICommandFunction, private commandFn: CommandFn) {
+	constructor(
+		command: ICommandFunction,
+		private commandFn: CommandFn | undefined,
+	) {
 		super(command);
 		this.commandFn = commandFn;
 	}
