@@ -16,9 +16,12 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn --cwd docs install --frozen-lockfile
+
       - name: Build website
         run: yarn docs:deploy
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       # Popular action to deploy to GitHub Pages:
       # Docs: https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus
