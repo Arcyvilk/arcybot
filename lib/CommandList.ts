@@ -1,6 +1,6 @@
 import { Routes, SlashCommandBuilder } from 'discord.js';
 import { REST } from '@discordjs/rest';
-import { ArcybotConfig } from 'Arcybot';
+import { ArcybotConfig } from '.';
 
 import { CommandType } from 'utils/constants';
 import { CommandObject, DiscordInteraction, DiscordCommand } from 'types';
