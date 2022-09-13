@@ -15,6 +15,8 @@ const config = {
 	favicon: 'img/favicon.ico',
 	organizationName: 'Arcyvilk',
 	projectName: 'arcybot',
+	deploymentBranch: 'gh-pages',
+	trailingSlash: false,
 	i18n: {
 		defaultLocale: 'en',
 		locales: ['en'],

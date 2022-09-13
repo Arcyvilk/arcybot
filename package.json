@@ -16,7 +16,8 @@
     "dev": "nodemon --exec npx ts-node -r tsconfig-paths/register __example/index.ts",
     "lint": "eslint . --ext .ts",
     "test": "echo TODO",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "docs:deploy": " yarn --cwd docs deploy"
   },
   "dependencies": {
     "discord.js": "^14.3.0",
