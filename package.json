@@ -17,7 +17,7 @@
     "lint": "eslint . --ext .ts",
     "test": "echo TODO",
     "semantic-release": "semantic-release",
-    "docs:deploy": " yarn --cwd docs deploy"
+    "docs:deploy": "yarn --cwd docs && yarn --cwd docs build && yarn --cwd docs deploy"
   },
   "dependencies": {
     "discord.js": "^14.3.0",
