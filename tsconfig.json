@@ -17,4 +17,5 @@
     "strictPropertyInitialization": false,
     "declaration": true
   },
+  "include": ["lib"]
 }

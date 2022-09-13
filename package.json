@@ -11,10 +11,9 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "tsc -p ./ --outDir dist/",
+    "build": "tsc",
     "build:watch": "tsc --watch -p ./",
-    "start": "node dist/__src/index.js",
-    "dev": "nodemon --exec npx ts-node -r tsconfig-paths/register lib/__src/index.ts",
+    "dev": "nodemon --exec npx ts-node -r tsconfig-paths/register __example/index.ts",
     "lint": "eslint . --ext .ts",
     "test": "echo TODO",
     "release": "echo TODO"

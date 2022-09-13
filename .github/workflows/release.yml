@@ -33,3 +33,5 @@ jobs:
 
       - name: Release
         run: yarn release
+        with:
+          token: ${{ secrets.NPM_PUBLISH }}

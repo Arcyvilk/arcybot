@@ -1,9 +1,9 @@
 import * as dotenv from 'dotenv';
 
-import Arcybot from '../';
+import Arcybot from '../lib';
 
-import { mock as commandsObject } from '__src/commands/mock';
-import { help } from '__src/commands/commands';
+import { mock as commandsObject } from './commands/mock';
+import { help } from './commands/commands';
 
 dotenv.config();
 
