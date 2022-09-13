@@ -24,7 +24,7 @@ jobs:
       - name: Build website
         run: yarn docs:deploy
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Deploy with gh-pages
         run: |
