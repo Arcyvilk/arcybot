@@ -15,6 +15,9 @@ jobs:
           node-version: 18
           cache: yarn
 
+      - run: git config --global user.name Arcyvilk
+      - run: git config --global user.email arcyvilk@gmail.com
+
       - name: Install dependencies
         run: yarn --cwd docs install --frozen-lockfile
 
@@ -23,12 +26,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-      # Popular action to deploy to GitHub Pages:
-      # Docs: https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: ./docs/build
-          user_name: github-actions[bot]
-          user_email: 41898282+github-actions[bot]@users.noreply.github.com
+      - name: Deploy with gh-pages
+        run: |
+          git remote set-url origin https://git:${GH_TOKEN}@github.com/arcybot.git
+          yarn deploy -- -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
