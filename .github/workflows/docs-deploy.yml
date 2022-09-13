@@ -18,7 +18,10 @@ jobs:
       - run: git config --global user.name Arcyvilk
       - run: git config --global user.email arcyvilk@gmail.com
 
-      - name: Install dependencies
+      - name: Install main dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install docs dependencies
         run: yarn --cwd docs install --frozen-lockfile
 
       - name: Build website
