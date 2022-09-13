@@ -1,6 +1,6 @@
 {
   "name": "arcybot",
-  "version": "0.0.0-development",
+  "version": "1.0.1",
   "description": "Arcybot - a set of utils for easier Discord bot development",
   "main": "dist/index.js",
   "repository": "https://github.com/Arcyvilk/arcybot.git",
