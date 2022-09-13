@@ -28,11 +28,8 @@ const config = {
 			/** @type {import('@docusaurus/preset-classic').Options} */
 			({
 				docs: {
-					routeBasePath: '/',
+					routeBasePath: '/arcybot/',
 					sidebarPath: require.resolve('./sidebars.js'),
-					// Please change this to your repo.
-					// Remove this to remove the "edit this page" links.
-					editUrl: 'https://github.com/Arcyvilk/arcybot',
 				},
 				theme: {
 					customCss: require.resolve('./custom.css'),
@@ -48,7 +45,8 @@ const config = {
 				title: 'Arcybot - Discord bot utils library',
 				logo: {
 					alt: 'Arcybot Logo',
-					src: 'img/logo.svg',
+					src: 'arcybot/img/logo.svg',
+					href: '/arcybot',
 				},
 				items: [
 					{

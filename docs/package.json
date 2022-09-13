@@ -2,6 +2,7 @@
   "name": "docs",
   "version": "0.0.0",
   "private": true,
+  "homepage": "/arcybot",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
