@@ -17,7 +17,8 @@
     "lint": "eslint . --ext .ts",
     "test": "echo TODO",
     "semantic-release": "semantic-release",
-    "docs:deploy": "yarn --cwd docs build && gh-pages -d build"
+    "docs:build": "yarn --cwd docs build",
+    "docs:deploy": "gh-pages -d docs/build"
   },
   "dependencies": {
     "discord.js": "^14.3.0",
