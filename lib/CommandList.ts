@@ -1,37 +1,32 @@
 import { Routes, SlashCommandBuilder } from 'discord.js';
 import { REST } from '@discordjs/rest';
+import { ArcybotConfig } from 'Arcybot';
 
 import { CommandType } from 'utils/constants';
-import { ICommand, IInteraction, IDiscordCommand } from 'types';
+import { CommandObject, DiscordInteraction, DiscordCommand } from 'types';
 import { TextCommand, EmbedCommand, FunctionCommand } from 'CommandBuilder';
 
 import { log } from 'utils';
 
-export type CommandConfig = {
-	discordToken?: string;
-	botId?: string;
-};
-
-export type CommandFn = (interaction: IInteraction) => unknown;
-
+export type CommandFn = (interaction: DiscordInteraction) => unknown;
 export type CommandDictionary = Map<string, CommandFn>;
 
 export class CommandList {
 	public list: (TextCommand | EmbedCommand | FunctionCommand | undefined)[];
 
 	constructor(
-		private rawCommands: ICommand[],
-		private fnCommands: CommandDictionary,
-		private config: CommandConfig,
+		private commandsObject: CommandObject[],
+		private commandsDictionary: CommandDictionary,
+		private config: ArcybotConfig,
 	) {
-		this.rawCommands = rawCommands;
-		this.fnCommands = fnCommands;
+		this.commandsObject = commandsObject;
+		this.commandsDictionary = commandsDictionary;
 		this.config = config;
 		this.list = this.getList();
 	}
 
 	private getList() {
-		return this.rawCommands.map(command => {
+		return this.commandsObject.map(command => {
 			if (command.type === CommandType.TEXT) {
 				return new TextCommand(command);
 			}
@@ -39,14 +34,14 @@ export class CommandList {
 				return new EmbedCommand(command);
 			}
 			if (command.type === CommandType.FUNCTION) {
-				const fn = this.fnCommands.get(command.keyword);
+				const fn = this.commandsDictionary.get(command.keyword);
 				return new FunctionCommand(command, fn);
 			}
 		});
 	}
 
 	private getSlashCommands() {
-		return this.rawCommands
+		return this.commandsObject
 			.map(command => {
 				const description = command.isDisabled
 					? `[DISABLED] ${command.description}`
@@ -72,7 +67,7 @@ export class CommandList {
 		try {
 			const discordCommands = (await rest.put(route, {
 				body: slashCommands,
-			})) as IDiscordCommand[];
+			})) as DiscordCommand[];
 			log.INFO(
 				`Successfully registered ${discordCommands.length} global commands!`,
 			);
@@ -82,7 +77,7 @@ export class CommandList {
 		}
 	}
 
-	public execute(interaction: IInteraction) {
+	public execute(interaction: DiscordInteraction) {
 		const { commandName } = interaction;
 		const Command = this.list.find(c => c?.command.keyword === commandName);
 

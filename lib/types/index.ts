@@ -1,3 +1,3 @@
-export * from './ICommand';
-export * from './IDiscordCommand';
-export * from './IEmbed';
+export * from './CommandObject';
+export * from './CustomEmbed';
+export * from './DiscordCommand';

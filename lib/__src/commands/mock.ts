@@ -1,9 +1,9 @@
-import { ICommand } from 'types';
+import { CommandObject } from 'types';
 import { CommandType } from 'utils/constants';
 
 // TODO
 // move this command object to database
-export const mock: ICommand[] = [
+export const mock: CommandObject[] = [
 	{
 		keyword: 'text',
 		isDisabled: false,

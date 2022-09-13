@@ -1,6 +1,6 @@
 import { CacheType, ChatInputCommandInteraction } from 'discord.js';
 
-export type IDiscordCommand = {
+export type DiscordCommand = {
 	id: string;
 	application_id: string;
 	version: string;
@@ -14,4 +14,4 @@ export type IDiscordCommand = {
 	guild_id: string;
 };
 
-export type IInteraction = ChatInputCommandInteraction<CacheType>;
+export type DiscordInteraction = ChatInputCommandInteraction<CacheType>;
