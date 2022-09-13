@@ -32,6 +32,6 @@ jobs:
         run: yarn build
 
       - name: Release
-        run: yarn release
-        with:
-          token: ${{ secrets.NPM_PUBLISH }}
+        run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
