@@ -1,5 +1,5 @@
 {
-  "name": "arcybot",
+  "name": "discord-arcybot",
   "version": "1.0.0",
   "description": "Arcybot - a set of utils for easier Discord bot development",
   "main": "dist/index.js",
