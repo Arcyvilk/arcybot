@@ -30,8 +30,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Deploy with gh-pages
-        run: |
-          git remote set-url origin https://git:${GH_TOKEN}@github.com/arcybot.git
-          yarn docs:deploy -- -u "github-actions-bot <support+actions@github.com>"
+        run: yarn docs:deploy -- -u "github-actions-bot <support+actions@github.com>"
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
