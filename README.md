@@ -2,7 +2,8 @@
 
 ## Development
 
-Local development: `yarn dev`
+Local development: `yarn dev` - this runs an example of a bot build upon the `arcybot` framework.
+
 Production environment: `yarn build && yarn start`
 
 ## Discord permissions
