@@ -1,6 +1,6 @@
 {
   "name": "arcybot",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Arcybot - a set of utils for easier Discord bot development",
   "main": "dist/index.js",
   "repository": "https://github.com/Arcyvilk/arcybot.git",
@@ -19,8 +19,7 @@
     "semantic-release": "semantic-release",
     "docs:start": "yarn --cwd __docs start",
     "docs:serve": "yarn --cwd __docs serve",
-    "docs:build": "yarn --cwd __docs build",
-    "docs:deploy": "gh-pages -d __docs/build"
+    "docs:build": "yarn --cwd __docs build"
   },
   "dependencies": {
     "discord.js": "^14.3.0",
