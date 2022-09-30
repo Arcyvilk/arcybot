@@ -12,7 +12,7 @@ All of Arcybot's commands are, by default, **[slash commands](https://support.di
 
 Basic information about all of the bot's commands are stored in an array of objects. To store them, you can create a JSON file, JavaScript object, or a database collection. In this tutorial we'll just create a JS object, but in the longer run it's much better to store your command list in a database to have an easy access to it without the need to modify the code every time you want to adjust anything.
 
-Every command has fields required for all types of commands, and a few unique to the particular's command type. [Read more about Arcybot's command types here](/docs/category/commands).
+Every command has fields required for all types of commands, and a few unique to the particular's command type. [Read more about Arcybot's command types here](/docs/category/command-types).
 
 Let's add a simple text command which, when used, prints "Hello world!" to Discord's chat.
 

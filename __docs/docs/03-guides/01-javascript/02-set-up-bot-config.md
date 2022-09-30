@@ -12,7 +12,7 @@ For the bot to work, it needs to know its Discord token and its application ID.
 
 ### Configuring the bot
 
-Add a configuration object to your `index.js` file like following (replacing `YOUR_DISCORD_TOKEN` with the [bot's token](/docs/connect-bot-to-discord/connect-bot-to-discord#get-the-bots-token), and `YOUR_BOT_ID` with [bot's application ID](/docs/connect-bot-to-discord/connect-bot-to-discord#invite-the-bot-to-your-server)):
+Add a configuration object to your `index.js` file like following (replacing `YOUR_DISCORD_TOKEN` with the [bot's token](/docs/getting-started/connect-bot-to-discord#get-the-bots-token), and `YOUR_BOT_ID` with [bot's application ID](/docs/getting-started/connect-bot-to-discord#invite-the-bot-to-your-server)):
 
 ```tsx title="index.js"
 import Arcybot from 'arcybot';
