@@ -1,5 +1,6 @@
 import { DiscordInteraction } from 'types';
 
-export const help = async (interaction: DiscordInteraction): Promise<void> => {
-	interaction.reply('Im helping :3');
+export const foo = async (interaction: DiscordInteraction): Promise<void> => {
+	const date = new Date().toLocaleDateString();
+	interaction.reply(`Current date is: ${date}`);
 };

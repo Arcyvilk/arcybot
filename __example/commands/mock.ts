@@ -35,11 +35,11 @@ export const mock: CommandObject[] = [
 		},
 	},
 	{
-		keyword: 'help',
+		type: CommandType.FUNCTION,
+		keyword: 'foo',
+		description: 'Demonstrates use of a FUNCTION command.',
 		isDisabled: false,
 		isModOnly: false,
 		canUseInDm: true,
-		description: 'Demonstrates use of a FUNCTION command.',
-		type: CommandType.FUNCTION,
 	},
 ];
