@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
 	title: 'ARCYBOT',
 	tagline: 'A set of utils for easy Discord bot development',
-	url: 'https://github.com/Arcyvilk/arcybot',
+	url: 'https://arcyvilk.github.io',
 	baseUrl: '/',
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
@@ -17,10 +17,6 @@ const config = {
 	organizationName: 'arcyvilk',
 	projectName: 'arcybot',
 	trailingSlash: false,
-	i18n: {
-		defaultLocale: 'en',
-		locales: ['en'],
-	},
 	presets: [
 		[
 			'classic',
