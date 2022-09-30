@@ -6,33 +6,31 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-	title: 'Arcybot',
-	tagline: 'Dinosaurs are cool',
+	title: 'ARCYBOT',
+	tagline: 'A set of utils for easy Discord bot development',
 	url: 'https://github.com/Arcyvilk/arcybot',
 	baseUrl: '/',
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',
-	organizationName: 'Arcyvilk',
+	// GitHub pages deployment config.
+	organizationName: 'arcyvilk',
 	projectName: 'arcybot',
-	deploymentBranch: 'gh-pages',
 	trailingSlash: false,
 	i18n: {
 		defaultLocale: 'en',
 		locales: ['en'],
 	},
-
 	presets: [
 		[
 			'classic',
 			/** @type {import('@docusaurus/preset-classic').Options} */
 			({
 				docs: {
-					routeBasePath: '/arcybot/',
 					sidebarPath: require.resolve('./sidebars.js'),
 				},
 				theme: {
-					customCss: require.resolve('./custom.css'),
+					customCss: require.resolve('./src/css/custom.css'),
 				},
 			}),
 		],
@@ -42,19 +40,28 @@ const config = {
 		/** @type {import('@docusaurus/preset-classic').ThemeConfig} */
 		({
 			navbar: {
-				title: 'Arcybot - Discord bot utils library',
+				title: 'Arcybot',
 				logo: {
 					alt: 'Arcybot Logo',
-					src: 'arcybot/img/logo.svg',
-					href: '/arcybot',
+					src: 'img/logo.svg',
 				},
 				items: [
+					{
+						type: 'doc',
+						docId: 'intro',
+						position: 'left',
+						label: 'Tutorial',
+					},
 					{
 						href: 'https://github.com/Arcyvilk/arcybot',
 						label: 'GitHub',
 						position: 'right',
 					},
 				],
+			},
+			footer: {
+				style: 'dark',
+				copyright: `Copyright © ${new Date().getFullYear()} Arcyvilk, Inc. Built with Docusaurus.`,
 			},
 			prism: {
 				theme: lightCodeTheme,
