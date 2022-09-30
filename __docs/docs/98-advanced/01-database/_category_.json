@@ -1,0 +1,8 @@
+{
+  "label": "Using a database",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "You do not need a database to handle your bot's commands and other data, but it will make your life much easier!"
+  }
+}

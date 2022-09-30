@@ -1,0 +1,8 @@
+{
+  "label": "Advanced topics",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "This is a list of topics that are more advanced and not necessary in the bot's development, but which might make doing it much easier."
+  }
+}

@@ -9,7 +9,7 @@ const config = {
 	title: 'ARCYBOT',
 	tagline: 'A set of utils for easy Discord bot development',
 	url: 'https://arcyvilk.github.io',
-	baseUrl: '/',
+	baseUrl: '/arcybot/',
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',
@@ -44,7 +44,7 @@ const config = {
 				items: [
 					{
 						type: 'doc',
-						docId: 'intro',
+						docId: 'intro/intro',
 						position: 'left',
 						label: 'Tutorial',
 					},
