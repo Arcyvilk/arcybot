@@ -39,7 +39,7 @@ const config = {
 				title: 'Arcybot',
 				logo: {
 					alt: 'Arcybot Logo',
-					src: 'img/logo.svg',
+					src: 'img/logo.png',
 				},
 				items: [
 					{
