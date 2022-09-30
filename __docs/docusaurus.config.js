@@ -14,8 +14,8 @@ const config = {
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',
 	// GitHub pages deployment config.
+	projectName: 'arcyvilk.github.io',
 	organizationName: 'arcyvilk',
-	projectName: 'arcybot',
 	trailingSlash: false,
 	presets: [
 		[
