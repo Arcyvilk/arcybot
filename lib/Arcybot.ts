@@ -1,8 +1,9 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 
-import { CommandFn, CommandList } from 'CommandList';
 import { createCommandDictionary, log } from 'utils';
 import { CommandObject } from 'types';
+
+import { CommandFn, CommandList } from 'CommandList';
 
 export type ArcybotConfig = {
 	discordToken?: string;
@@ -53,5 +54,3 @@ export default class Arcybot {
 		});
 	}
 }
-
-export type { CommandObject };

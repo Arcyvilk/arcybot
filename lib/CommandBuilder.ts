@@ -1,5 +1,5 @@
-import { CommandFn } from 'CommandList';
 import { EmbedBuilder } from 'discord.js';
+
 import { CommandDisabled } from 'utils/constants';
 import {
 	CommandObject,
@@ -7,8 +7,9 @@ import {
 	CommandObjectText,
 	CommandObjectFunction,
 	DiscordInteraction,
-} from './types';
+} from 'types';
 
+import { CommandFn } from 'CommandList';
 abstract class CommandBuilder<T extends CommandObject> {
 	constructor(public command: T) {
 		this.command = command;

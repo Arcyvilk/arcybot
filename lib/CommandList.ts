@@ -2,11 +2,10 @@ import { Routes, SlashCommandBuilder } from 'discord.js';
 import { REST } from '@discordjs/rest';
 import { ArcybotConfig } from '.';
 
-import { CommandType } from 'utils/constants';
+import { log, CommandType } from 'utils';
 import { CommandObject, DiscordInteraction, DiscordCommand } from 'types';
-import { TextCommand, EmbedCommand, FunctionCommand } from 'CommandBuilder';
 
-import { log } from 'utils';
+import { TextCommand, EmbedCommand, FunctionCommand } from 'CommandBuilder';
 
 export type CommandFn = (interaction: DiscordInteraction) => unknown;
 export type CommandDictionary = Map<string, CommandFn>;

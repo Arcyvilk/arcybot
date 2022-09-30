@@ -1,4 +1,5 @@
-import Arcybot from './Arcybot';
-
 export * from './Arcybot';
-export default Arcybot;
+export * from './types';
+export * from './utils';
+
+export { default as Arcybot } from './Arcybot';
