@@ -10,7 +10,7 @@ export type ArcybotConfig = {
 	botId?: string;
 };
 
-export default class Arcybot {
+export class Arcybot {
 	private _bot: Client;
 	private _config: ArcybotConfig;
 	private _commands: CommandList;

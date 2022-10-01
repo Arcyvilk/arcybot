@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 
-import Arcybot from '../lib';
+import { Arcybot } from '../lib';
 
 import { mock as commandsObject } from './commands/mock';
 import { foo } from './commands/commands';
