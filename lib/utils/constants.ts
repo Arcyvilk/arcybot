@@ -2,6 +2,7 @@ export enum CommandType {
 	TEXT = 'text',
 	EMBED = 'embed',
 	FUNCTION = 'function',
+	CUSTOM = 'custom',
 }
 
 export enum Color {

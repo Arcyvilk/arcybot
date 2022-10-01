@@ -18,7 +18,7 @@ export interface CommandObjectText extends Omit<BaseCommandObject, 'type'> {
 }
 
 export interface CommandObjectFunction extends Omit<BaseCommandObject, 'type'> {
-	type: CommandType.FUNCTION;
+	type: CommandType.FUNCTION | CommandType.CUSTOM;
 }
 
 export interface CommandObjectEmbed extends Omit<BaseCommandObject, 'type'> {
