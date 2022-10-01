@@ -17,7 +17,7 @@ Every command has fields required for all types of commands, and a few unique to
 Let's add a simple text command which, when used, prints "Hello world!" to Discord's chat.
 
 ```tsx title="index.js"
-import Arcybot, { CommandType } from 'arcybot';
+import { Arcybot, CommandType } from 'arcybot';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -45,7 +45,7 @@ const commandsFunctions = [];
 
 const bot = new Arcybot(commandsObject, commandsFunctions, config);
 
-bot.start();
+bot.start('Bot started!');
 ```
 
 Voila! Your first command is ready.

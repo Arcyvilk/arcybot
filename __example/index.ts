@@ -14,4 +14,4 @@ const bot = new Arcybot(commandsObject, commandsFunctions, {
 	botId: process.env.BOT_ID,
 });
 
-bot.start();
+bot.start('Bot started!');

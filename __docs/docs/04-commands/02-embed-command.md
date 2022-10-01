@@ -40,7 +40,7 @@ type EmbedCommand = {
 ### Example
 
 ```ts title="index.ts"
-import Arcybot, { CommandObject } from 'arcybot';
+import { Arcybot, CommandObject } from 'arcybot';
 
 const commandsObject: CommandObject = [{
   type: CommandType.EMBED,
@@ -67,7 +67,7 @@ const commandsObject: CommandObject = [{
 
 const bot = new Arcybot(commandsObject, [], CONFIG);
 
-bot.start();
+bot.start('Bot started!');
 ```
 
 ![](./img/embed-01.png)

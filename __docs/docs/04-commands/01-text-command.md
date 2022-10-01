@@ -32,7 +32,7 @@ type TextCommand = {
 ### Example
 
 ```ts title="index.ts"
-import Arcybot, { CommandObject } from 'arcybot';
+import { Arcybot, CommandObject } from 'arcybot';
 
 const commandsObject: CommandObject[] = [{
   type: CommandType.TEXT,
@@ -47,7 +47,7 @@ const commandsObject: CommandObject[] = [{
 
 const bot = new Arcybot(commandsObject, [], CONFIG);
 
-bot.start();
+bot.start('Bot started!');
 ```
 
 ![](./img/text-01.png)

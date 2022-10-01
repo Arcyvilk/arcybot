@@ -1,6 +1,7 @@
 {
   "label": "Guides",
   "position": 3,
+  "collapsed": false,
   "link": {
     "type": "generated-index",
     "description": "A few step-by-step guides to create your own bot using Arcybot."

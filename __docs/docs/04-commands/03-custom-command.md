@@ -35,7 +35,7 @@ type CustomCommand = {
 ### Example
 
 ```ts title="index.ts"
-import Arcybot, { CommandObject, DiscordInteraction } from 'arcybot';
+import { Arcybot, CommandObject, DiscordInteraction } from 'arcybot';
 
 // `foo` is a custom function to be executed upon using the `foo` command.
 // It must have the same name as the keyword of the command.
@@ -59,7 +59,7 @@ const commandsFunctions = [foo];
 
 const bot = new Arcybot(commandsObject, commandsFunctions, CONFIG);
 
-bot.start();
+bot.start('Bot started!');
 ```
 
 ![](./img/foo-01.png)

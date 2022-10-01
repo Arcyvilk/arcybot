@@ -1,6 +1,7 @@
 {
   "label": "Command types",
   "position": 4,
+  "collapsed": false,
   "link": {
     "type": "generated-index",
     "description": "Arcybot's command types."

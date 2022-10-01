@@ -15,7 +15,7 @@ For the bot to work, it needs to know its Discord token and its application ID.
 Add a configuration object to your `index.js` file like following (replacing `YOUR_DISCORD_TOKEN` with the [bot's token](/docs/getting-started/connect-bot-to-discord#get-the-bots-token), and `YOUR_BOT_ID` with [bot's application ID](/docs/getting-started/connect-bot-to-discord#invite-the-bot-to-your-server)):
 
 ```tsx title="index.js"
-import Arcybot from 'arcybot';
+import { Arcybot } from 'arcybot';
 
 // highlight-start
 
@@ -31,7 +31,7 @@ const commandsFunctions = [];
 
 const bot = new Arcybot(commandsObject, commandsFunctions, config);
 
-bot.start();
+bot.start('Bot started!');
 ```
 
 ### Securing your token
@@ -58,7 +58,7 @@ npm install dotenv
 And finally, import the `dotenv` and use the environmental variables in your `index.js` file:
 
 ```tsx title="index.js"
-import Arcybot from 'arcybot';
+import { Arcybot } from 'arcybot';
 // highlight-start
 
 import * as dotenv from 'dotenv';
@@ -77,5 +77,5 @@ const commandsFunctions = [];
 
 const bot = new Arcybot(commandsObject, commandsFunctions, CONFIG);
 
-bot.start();
+bot.start('Bot started!');
 ```

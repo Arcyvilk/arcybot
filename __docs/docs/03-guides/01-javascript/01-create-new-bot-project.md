@@ -48,7 +48,7 @@ yarn add arcybot@latest
 Create an `index.js` file in the same directory as the `package.json` file - this will serve as an entry point for your bot:
 
 ```tsx title="index.js"
-import Arcybot from 'arcybot';
+import { Arcybot } from 'arcybot';
 
 const config = {};              // configuration object
 const commandsObject = [];      // a JSON object storing basic info about your commands
@@ -56,7 +56,7 @@ const commandsFunctions = [];   // methods executing your more sophisticated com
 
 const bot = new Arcybot(commandsObject, commandsFunctions, config);
 
-bot.start();
+bot.start('Bot started!');
 ```
 
 This code imports an `arcybot` dependency, creates a new `Arcybot` instance and then starts the bot. 
