@@ -14,13 +14,11 @@ export class CommandList {
 	public list: (TextCommand | EmbedCommand | FunctionCommand | undefined)[];
 
 	constructor(
+		private config: ArcybotConfig,
 		private commandsObject: CommandObject[],
 		private commandsDictionary: CommandDictionary,
-		private config: ArcybotConfig,
+		private customCommands?: SlashCommandBuilder[],
 	) {
-		this.commandsObject = commandsObject;
-		this.commandsDictionary = commandsDictionary;
-		this.config = config;
 		this.list = this.getList();
 	}
 
@@ -50,6 +48,7 @@ export class CommandList {
 					.setDescription(description)
 					.setDMPermission(command.canUseInDm ?? false);
 			})
+			.concat(this.customCommands ?? [])
 			.map(command => command.toJSON());
 	}
 

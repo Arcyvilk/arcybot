@@ -9,9 +9,13 @@ dotenv.config();
 
 const commandsFunctions = [foo];
 
-const bot = new Arcybot(commandsObject, commandsFunctions, {
-	discordToken: process.env.DISCORD_TOKEN,
-	botId: process.env.BOT_ID,
-});
+const bot = new Arcybot(
+	{
+		discordToken: process.env.DISCORD_TOKEN,
+		botId: process.env.BOT_ID,
+	},
+	commandsObject,
+	commandsFunctions,
+);
 
 bot.start('Bot started!');
