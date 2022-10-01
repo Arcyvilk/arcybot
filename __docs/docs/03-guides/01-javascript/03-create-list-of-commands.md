@@ -42,8 +42,9 @@ const commandsObject = [{
 // highlight-end
 
 const commandsFunctions = [];
+const customCommands = [];
 
-const bot = new Arcybot(commandsObject, commandsFunctions, config);
+const bot = new Arcybot(config, commandsObject, commandsFunctions, customCommands);
 
 bot.start('Bot started!');
 ```

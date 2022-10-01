@@ -53,8 +53,9 @@ import { Arcybot } from 'arcybot';
 const config = {};              // configuration object
 const commandsObject = [];      // a JSON object storing basic info about your commands
 const commandsFunctions = [];   // methods executing your more sophisticated commands
+const customCommands = [];      // array of your own SlashCommandBuilder
 
-const bot = new Arcybot(commandsObject, commandsFunctions, config);
+const bot = new Arcybot(config, commandsObject, commandsFunctions, customCommands);
 
 bot.start('Bot started!');
 ```

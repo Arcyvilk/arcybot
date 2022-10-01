@@ -28,8 +28,9 @@ const config = {
 
 const commandsObject = [];
 const commandsFunctions = [];
+const customCommands = [];
 
-const bot = new Arcybot(commandsObject, commandsFunctions, config);
+const bot = new Arcybot(config, commandsObject, commandsFunctions, customCommands);
 
 bot.start('Bot started!');
 ```
@@ -74,8 +75,9 @@ const config = {
 
 const commandsObject = [];
 const commandsFunctions = [];
+const customCommands = []; 
 
-const bot = new Arcybot(commandsObject, commandsFunctions, CONFIG);
+const bot = new Arcybot(config, commandsObject, commandsFunctions, customCommands);
 
 bot.start('Bot started!');
 ```
