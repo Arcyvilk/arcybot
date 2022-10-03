@@ -2,6 +2,7 @@ import { CustomEmbed } from 'types';
 import { CommandType } from 'utils/constants';
 
 export type BaseCommandObject = {
+	_id?: string; // comes from MongoDB
 	keyword: string;
 	description: string;
 	type: CommandType;
