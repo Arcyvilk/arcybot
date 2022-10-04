@@ -71,7 +71,7 @@ export class FunctionCommand extends CommandBuilder<CommandObjectFunction> {
 			interaction.reply(
 				getErrorEmbed(
 					'Cannot execute this command',
-					'This command is registered, but not configured.',
+					'This command is registered, but not configured.\nAdd the command to the `commandFunctions` array.',
 					true,
 				),
 			);
