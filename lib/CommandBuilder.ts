@@ -1,4 +1,4 @@
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, GuildMemberRoleManager, Role } from 'discord.js';
 
 import { CommandDisabled } from 'utils/constants';
 import {
@@ -9,22 +9,31 @@ import {
 	CommandObjectFunction,
 	DiscordInteraction,
 } from 'types';
+import { getErrorEmbed } from 'index';
 
 abstract class CommandBuilder<T extends CommandObject> {
 	constructor(public command: T) {
 		this.command = command;
 	}
 
-	public canBeExecuted(interaction: DiscordInteraction): boolean {
+	public canBeExecuted(
+		interaction: DiscordInteraction,
+		modRole?: string,
+	): boolean {
 		if (this.command.isDisabled) {
-			interaction.reply({ content: CommandDisabled.DISABLED, ephemeral: true });
+			interaction.reply(getErrorEmbed('Error', CommandDisabled.DISABLED, true));
 			return false;
 		}
-		if (this.command.isModOnly) {
-			// check if user has the correct role
-			console.log(interaction.member?.roles);
-			interaction.reply({ content: CommandDisabled.MOD_ONLY, ephemeral: true });
-			return false;
+		if (modRole && this.command.isModOnly && interaction.inGuild()) {
+			const isMod = (
+				interaction?.member.roles as GuildMemberRoleManager
+			).cache.some((role: Role) => role.name === modRole);
+			if (!isMod) {
+				interaction.reply(
+					getErrorEmbed('Error', CommandDisabled.MOD_ONLY, true),
+				);
+				return false;
+			}
 		}
 		return true;
 	}
@@ -32,18 +41,12 @@ abstract class CommandBuilder<T extends CommandObject> {
 
 export class TextCommand extends CommandBuilder<CommandObjectText> {
 	public execute(interaction: DiscordInteraction): void {
-		const canBeExecuted = this.canBeExecuted(interaction);
-		if (!canBeExecuted) return;
-
 		interaction.reply(this.command.text);
 	}
 }
 
 export class EmbedCommand extends CommandBuilder<CommandObjectEmbed> {
 	public execute(interaction: DiscordInteraction): void {
-		const canBeExecuted = this.canBeExecuted(interaction);
-		if (!canBeExecuted) return;
-
 		const { title, fields, thumbnailImg } = this.command.embed;
 		const embed = new EmbedBuilder()
 			.setColor(0xfdc000)
@@ -65,12 +68,15 @@ export class FunctionCommand extends CommandBuilder<CommandObjectFunction> {
 
 	public execute(interaction: DiscordInteraction): void {
 		if (!this.commandFn) {
-			interaction.reply('This command is registered, but not configured.');
+			interaction.reply(
+				getErrorEmbed(
+					'Cannot execute this command',
+					'This command is registered, but not configured.',
+					true,
+				),
+			);
 			return;
 		}
-		const canBeExecuted = this.canBeExecuted(interaction);
-		if (!canBeExecuted) return;
-
 		this.commandFn(interaction);
 	}
 }

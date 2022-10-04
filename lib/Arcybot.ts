@@ -8,29 +8,26 @@ import { CommandList } from 'CommandList';
 export type ArcybotConfig = {
 	discordToken?: string;
 	botId?: string;
+	modRole?: string;
+	guildId?: string;
 };
 
 export class Arcybot {
 	private _bot: Client;
-	private _config: ArcybotConfig;
 	private _commands: CommandList;
 
 	constructor(
-		config: ArcybotConfig,
+		private config: ArcybotConfig,
 		commandsObject: CommandObject[],
 		commandsFunctions: CommandFn[],
 		customCommands?: SlashCommandBuilder[],
 	) {
-		this._config = config;
 		this._bot = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 		const commandsDictionary = createCommandDictionary(commandsFunctions);
 
 		this._commands = new CommandList(
-			{
-				discordToken: process.env.DISCORD_TOKEN,
-				botId: process.env.BOT_ID,
-			},
+			this.config,
 			commandsObject,
 			commandsDictionary,
 			customCommands,
@@ -46,7 +43,7 @@ export class Arcybot {
 	}
 
 	public start(loginMessage = 'Arcybot started!') {
-		this._bot.login(this._config.discordToken);
+		this._bot.login(this.config.discordToken);
 
 		this._bot.once('ready', () => {
 			log.INFO(loginMessage);
@@ -55,7 +52,7 @@ export class Arcybot {
 
 		this._bot.on('interactionCreate', async interaction => {
 			if (interaction.isChatInputCommand()) {
-				this._commands.execute(interaction);
+				this._commands.execute(interaction, this.config.modRole);
 			}
 		});
 	}

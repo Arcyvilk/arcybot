@@ -105,10 +105,13 @@ export class CommandList {
 	public async register() {
 		const token = this.config.discordToken;
 		const botId = this.config.botId;
+		const guildId = this.config.guildId;
 
 		if (!token || !botId) return;
 
-		const route = Routes.applicationCommands(botId);
+		const route = guildId
+			? Routes.applicationGuildCommands(botId, guildId)
+			: Routes.applicationCommands(botId);
 		const rest = new REST({ version: '10' }).setToken(token);
 		const slashCommands = this.getSlashCommands();
 
@@ -117,10 +120,55 @@ export class CommandList {
 				body: slashCommands,
 			})) as DiscordCommand[];
 			log.INFO(
-				`Successfully registered ${discordCommands.length} global commands!`,
+				`Successfully registered ${discordCommands.length} ${
+					guildId ? 'guild' : 'global'
+				} commands!`,
 			);
 		} catch (error) {
 			log.WARN(`Could not register global commands.`);
+			console.log(error);
+		}
+	}
+
+	/**
+	 * Removes all global commands.
+	 * @returns void
+	 */
+	public async removeGlobalCommands() {
+		const token = this.config.discordToken;
+		const botId = this.config.botId;
+
+		if (!token || !botId) return;
+
+		const rest = new REST({ version: '10' }).setToken(token);
+
+		try {
+			rest.put(Routes.applicationCommands(botId), { body: [] });
+			log.INFO('Successfully deleted all global commands.');
+		} catch (error) {
+			log.WARN(`Could not delete global commands.`);
+			console.log(error);
+		}
+	}
+
+	/**
+	 * Removes all guild commands.
+	 * @returns void
+	 */
+	public async removeGuildCommands() {
+		const token = this.config.discordToken;
+		const guildId = this.config.guildId;
+		const botId = this.config.botId;
+
+		if (!token || !botId || !guildId) return;
+
+		const rest = new REST({ version: '10' }).setToken(token);
+
+		try {
+			rest.put(Routes.applicationGuildCommands(botId, guildId), { body: [] });
+			log.INFO('Successfully deleted all guild commands.');
+		} catch (error) {
+			log.WARN(`Could not delete guild commands.`);
 			console.log(error);
 		}
 	}
@@ -130,11 +178,12 @@ export class CommandList {
 	 * @param interaction DiscordInteraction
 	 * @returns void
 	 */
-	public execute(interaction: DiscordInteraction) {
+	public execute(interaction: DiscordInteraction, modRole?: string) {
 		const { commandName } = interaction;
 		const Command = this.list.find(c => c?.command.keyword === commandName);
 
 		if (!Command) return;
-		Command.execute(interaction);
+		if (Command.canBeExecuted(interaction, modRole))
+			Command.execute(interaction);
 	}
 }

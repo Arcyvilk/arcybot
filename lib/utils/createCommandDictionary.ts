@@ -1,4 +1,4 @@
-import { CommandDictionary, CommandFn } from 'CommandList';
+import { CommandDictionary, CommandFn } from 'types';
 
 export const createCommandDictionary = (
 	fnList: CommandFn[],
