@@ -47,6 +47,16 @@ export class CommandList {
 	}
 
 	/**
+	 * Generates a command description based on its properties.
+	 * @param command CommandObject
+	 * @returns string
+	 */
+	private getDescription(command: CommandObject) {
+		if (command.isDisabled) return `⛔ DISABLED | ${command.description}`;
+		if (command.isModOnly) return `⚙️ MOD | ${command.description}`;
+		return command.description;
+	}
+	/**
 	 * Creates a list of basic slash commands, built from the command types TEXT, EMBED or FUNCTION.
 	 * @returns SlashCommandBuilder[]
 	 */
@@ -54,12 +64,9 @@ export class CommandList {
 		return this.commandsObject
 			.filter(command => command.type !== CommandType.CUSTOM)
 			.map(command => {
-				const description = command.isDisabled
-					? `[DISABLED] ${command.description}`
-					: command.description;
 				return new SlashCommandBuilder()
 					.setName(command.keyword)
-					.setDescription(description)
+					.setDescription(this.getDescription(command))
 					.setDMPermission(command.canUseInDm ?? false);
 			})
 			.map(command => command.toJSON());
