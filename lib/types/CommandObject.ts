@@ -11,6 +11,7 @@ export type BaseCommandObject = {
 	canUseInDm?: boolean;
 	refusalText?: string;
 	category?: string;
+	legacy?: boolean;
 };
 
 export interface CommandObjectText extends Omit<BaseCommandObject, 'type'> {
