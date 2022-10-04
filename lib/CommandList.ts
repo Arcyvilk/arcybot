@@ -80,16 +80,13 @@ export class CommandList {
 		const customSlashCommands = this.commandsObject
 			.filter(command => command.type === CommandType.CUSTOM)
 			.map(command => {
-				const description = command.isDisabled
-					? `[DISABLED] ${command.description}`
-					: command.description;
 				const customCommand = this.customCommands?.find(
 					c => c.name === command.keyword,
 				);
 				if (customCommand)
 					return customCommand
 						.setName(command.keyword)
-						.setDescription(description)
+						.setDescription(this.getDescription(command))
 						.setDMPermission(command.canUseInDm ?? false);
 			})
 			.map(command => (command ? command.toJSON() : undefined))
