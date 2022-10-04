@@ -2,6 +2,7 @@ import { EmbedBuilder } from 'discord.js';
 
 import { CommandDisabled } from 'utils/constants';
 import {
+	CommandFn,
 	CommandObject,
 	CommandObjectEmbed,
 	CommandObjectText,
@@ -9,7 +10,6 @@ import {
 	DiscordInteraction,
 } from 'types';
 
-import { CommandFn } from 'CommandList';
 abstract class CommandBuilder<T extends CommandObject> {
 	constructor(public command: T) {
 		this.command = command;
@@ -17,13 +17,13 @@ abstract class CommandBuilder<T extends CommandObject> {
 
 	public canBeExecuted(interaction: DiscordInteraction): boolean {
 		if (this.command.isDisabled) {
-			interaction.reply(CommandDisabled.DISABLED);
+			interaction.reply({ content: CommandDisabled.DISABLED, ephemeral: true });
 			return false;
 		}
 		if (this.command.isModOnly) {
 			// check if user has the correct role
 			console.log(interaction.member?.roles);
-			interaction.reply(CommandDisabled.MOD_ONLY);
+			interaction.reply({ content: CommandDisabled.MOD_ONLY, ephemeral: true });
 			return false;
 		}
 		return true;

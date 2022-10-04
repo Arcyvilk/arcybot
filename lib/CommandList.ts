@@ -3,12 +3,14 @@ import { REST } from '@discordjs/rest';
 import { ArcybotConfig } from '.';
 
 import { log, CommandType } from 'utils';
-import { CommandObject, DiscordInteraction, DiscordCommand } from 'types';
+import {
+	CommandObject,
+	CommandDictionary,
+	DiscordInteraction,
+	DiscordCommand,
+} from 'types';
 
 import { TextCommand, EmbedCommand, FunctionCommand } from 'CommandBuilder';
-
-export type CommandFn = (interaction: DiscordInteraction) => unknown;
-export type CommandDictionary = Map<string, CommandFn>;
 
 export class CommandList {
 	public list: (TextCommand | EmbedCommand | FunctionCommand | undefined)[];

@@ -1,9 +1,9 @@
 import { Client, GatewayIntentBits, SlashCommandBuilder } from 'discord.js';
 
 import { createCommandDictionary, log } from 'utils';
-import { CommandObject } from 'types';
+import { CommandFn, CommandObject } from 'types';
 
-import { CommandFn, CommandList } from 'CommandList';
+import { CommandList } from 'CommandList';
 
 export type ArcybotConfig = {
 	discordToken?: string;
