@@ -1,4 +1,9 @@
-import { Client, GatewayIntentBits, SlashCommandBuilder } from 'discord.js';
+import {
+	Client,
+	GatewayIntentBits,
+	Partials,
+	SlashCommandBuilder,
+} from 'discord.js';
 
 import { createCommandDictionary, log } from 'utils';
 import { CommandFn, CommandObject } from 'types';
@@ -10,6 +15,8 @@ export type ArcybotConfig = {
 	botId?: string;
 	modRole?: string;
 	guildId?: string;
+	intents?: GatewayIntentBits[];
+	partials?: Partials[];
 };
 
 export class Arcybot {
@@ -22,12 +29,13 @@ export class Arcybot {
 		commandsFunctions: CommandFn[],
 		customCommands?: SlashCommandBuilder[],
 	) {
-		this._bot = new Client({ intents: [GatewayIntentBits.Guilds] });
+		const { intents = [], partials = [], ...configRest } = this.config;
+		this._bot = new Client({ intents, partials });
 
 		const commandsDictionary = createCommandDictionary(commandsFunctions);
 
 		this._commands = new CommandList(
-			this.config,
+			configRest,
 			commandsObject,
 			commandsDictionary,
 			customCommands,
