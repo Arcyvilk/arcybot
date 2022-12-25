@@ -30,7 +30,11 @@ export class Arcybot {
 		customCommands?: SlashCommandBuilder[],
 	) {
 		const { intents = [], partials = [], ...configRest } = this.config;
-		this._bot = new Client({ intents, partials });
+		this._bot = new Client({
+			intents,
+			partials,
+			allowedMentions: { parse: ['roles', 'users'] },
+		});
 
 		const commandsDictionary = createCommandDictionary(commandsFunctions);
 
